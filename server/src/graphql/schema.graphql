@@ -1,0 +1,49 @@
+type Location {
+  id: ID!
+  name: String!
+  desc: String!
+  lat: Float!
+  lng: Float!
+}
+
+type Event {
+  id: ID!
+  title: String!
+  desc: String!
+  date: String!
+  from: String!
+  to: String!
+  location_id: ID!
+  location: [Location]
+  user_id: ID!
+  user: [User]!
+  participant: [Participant]!
+}
+
+type User {
+  id: ID!
+  username: String!
+  email: String!
+}
+
+type Participant {
+  id: ID!
+  user_id: ID!
+  event_id: ID!
+  user: [User]!
+}
+
+type Query {
+  #Event
+  events: [Event]!
+  event(id: ID!): Event
+  #User
+  users: [User]!
+  user(id: ID!): User
+  #Location
+  locations: [Location]!
+  location(id: ID!): Location
+  #Participant
+  participants: [Participant]
+  participant(id: ID!): Participant
+}
